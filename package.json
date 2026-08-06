@@ -3,7 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Lightweight provisioning core: detect system -> install engine -> install models. Apple-minimal local UI.",
+  "description": "本地部署大模型的一站式管理工具：一站式 llama 引擎 + 一站式 SwiftLM 引擎，检测系统 → 装引擎 → 装模型 → 用模型。零依赖、纯本地。",
+  "keywords": [
+    "本地部署大模型",
+    "一站式 llama 引擎",
+    "一站式 SwiftLM 引擎",
+    "llama.cpp",
+    "SwiftLM",
+    "MLX",
+    "GGUF",
+    "LLM",
+    "local-ai"
+  ],
   "scripts": {
     "start": "node server.js"
   },
