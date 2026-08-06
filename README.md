@@ -12,12 +12,12 @@
 
 ## 特性
 
-- **傻瓜式四步**：检测系统 → 装引擎（安装包 / 下载）→ 装模型（把文件夹粘进去）→ 用模型（开启 / 关闭 / 切换）。
+- **傻瓜式四步**：检测系统 → 装引擎（官方下载）→ 装模型（把文件夹粘进去）→ 用模型（开启 / 关闭 / 切换）。
 - **双引擎**：
   - [`llama.cpp`](https://github.com/ggml-org/llama.cpp) — 通用 GGUF 推理运行时（CPU / Metal / CUDA），跨平台。
   - [`SwiftLM`](https://github.com/SharpAI/SwiftLM) — Apple Silicon 专属的 MLX 原生推理服务，OpenAI 兼容，吃 MLX 权重。
 - **每模型独立端口**：每个模型有自己固定的端口（8200–8799），互不打架，切换模型自动关旧的开新的。
-- **离线安装包**：引擎和模型都可以打成 `.pkg` 安装包，双击即装、无需联网（见 `scripts/packaging/`）。
+- **官方下载**：引擎与模型均从官方渠道获取（llama.cpp / SwiftLM 的 GitHub 发布页、HuggingFace）。
 - **本地优先**：无遥测、无服务器留存，音频与对话内容只存在浏览器与本机。
 
 ## 如何安装 CoreUI（这个工具本身）
@@ -36,17 +36,17 @@
 
 ## 系统支持（Windows / Linux 能不能装？）
 
-| 平台 | 管理工具 | llama.cpp 引擎 | SwiftLM 引擎 | 离线安装包 |
-|---|---|---|---|---|
-| macOS（Apple Silicon） | ✅ | ✅ Metal 加速 | ✅ MLX 原生 | ✅ `.pkg` |
-| macOS（Intel） | ✅ | ✅ CPU | ❌ | ✅ `.pkg` |
-| Windows 10 / 11 | ✅ | ✅ CPU（CUDA 需自行装驱动与工具链） | ❌ | ❌ 用「下载预编译包」或手动放二进制 |
-| Linux | ✅ | ✅ CPU / CUDA | ❌ | ❌ 同上 |
+| 平台 | 管理工具 | llama.cpp 引擎 | SwiftLM 引擎 |
+|---|---|---|---|
+| macOS（Apple Silicon） | ✅ | ✅ Metal 加速 | ✅ MLX 原生 |
+| macOS（Intel） | ✅ | ✅ CPU | ❌ |
+| Windows 10 / 11 | ✅ | ✅ CPU（CUDA 需自行装驱动与工具链） | ❌ |
+| Linux | ✅ | ✅ CPU / CUDA | ❌ |
 
 - **管理工具本身**（Node 后端 + 浏览器页面）在任何装了 Node ≥ 18 的系统上都能跑，检测逻辑原生支持 macOS / Windows / Linux。
 - **llama.cpp** 全平台可用：Apple Silicon 用 Metal、NVIDIA 显卡用 CUDA、无独显就用 CPU（此时建议选小模型）。
 - **SwiftLM** 只支持 Apple Silicon（macOS arm64），Windows / Linux 装不了。
-- **离线 `.pkg` 安装包**是 macOS 专属（依赖 pkgbuild）；Windows / Linux 用引擎卡片上的「下载预编译包」按钮，或把编译好的引擎二进制放进 `~/.coreui/engine/` 对应子目录。
+- **引擎获取**：各平台都可用引擎卡片上的「下载预编译包」按钮（自动从官方 GitHub 发布页获取），或自己下载官方预编译二进制放进 `~/.coreui/engine/` 对应子目录。
 
 ## 快速开始
 
@@ -60,7 +60,7 @@ PORT=8899 node server.js
 然后按页面左侧的四步走：
 
 1. **检测系统** — 点「开始检测」，看看你的电脑适合跑什么。
-2. **装引擎** — 双击引擎安装包（或点卡片上的「下载预编译包」），装完点「测试」确认。
+2. **装引擎** — 点卡片上的「下载预编译包」（自动从官方 GitHub 发布页获取），装完点「测试」确认。
 3. **装模型** — 自己下载模型后，把文件夹 / `.gguf` 文件直接粘到对应目录：
 
    | 模型类型 | 目录 |
@@ -101,12 +101,7 @@ coreui/
 │   ├── audio.js         # TTS / STT 音频服务（llama.cpp + Python）
 │   ├── hf.js / download.js / status.js
 ├── catalog/models.json  # 内置模型目录
-├── public/              # 前端单页应用（index.html / app.js / styles.css）
-├── scripts/packaging/   # 离线安装包生成器（引擎 / 模型 / 批量）
-│   ├── make-engine-pkg.sh   # llama.cpp 引擎安装包
-│   ├── make-model-pkg.sh    # 模型安装包（--subdir mlx|llama|audio）
-│   └── build-audio-bundles.sh # 批量构建音频模型包
-└── dist/                # 构建产物（安装包，不入库）
+└── public/              # 前端单页应用（index.html / app.js / styles.css）
 ```
 
 ## API 一览
