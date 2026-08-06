@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# 构建产物（离线安装包，64MB+，不入库）
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# 运行时
+*.log

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoreUI</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- Left sidebar menu -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>CoreUI</h1>
+        <p>本地 AI 运行时</p>
+      </div>
+      <nav class="nav">
+        <button class="nav-item is-active" data-step="0"><span class="num">1</span><span class="nav-label">检测系统</span></button>
+        <button class="nav-item" data-step="1"><span class="num">2</span><span class="nav-label">安装引擎</span></button>
+        <button class="nav-item" data-step="2"><span class="num">3</span><span class="nav-label">安装模型</span></button>
+        <button class="nav-item" data-step="3"><span class="num">📖</span><span class="nav-label">使用说明</span></button>
+      </nav>
+    </aside>
+
+    <!-- Right content area -->
+    <main class="main">
+      <header class="topbar">
+        <h2 id="pageTitle">检测系统</h2>
+        <p class="lead" id="pageLead">自动识别你的硬件，给出推荐的引擎与模型档位。</p>
+      </header>
+
+      <!-- Step 1: Detect -->
+      <section class="panel is-active" data-panel="0">
+        <button class="btn primary" id="detectBtn">开始检测</button>
+        <div class="grid" id="detectGrid"></div>
+        <p class="hint">检测完成后，右侧会给出推荐的引擎与模型档位。点左侧「使用说明」可查看完整的系统 / 引擎 / 模型需求与安装指南。</p>
+      </section>
+
+      <!-- Step 2: Engine -->
+      <section class="panel" data-panel="1">
+        <p class="lead">引擎我们做了安装包，双击装好即可。装完点卡片上的「检测」按钮，确认是否成功。</p>
+        <div class="engines" id="engines"></div>
+      </section>
+
+      <!-- Step 3: Model -->
+      <section class="panel" data-panel="2" id="modelSection">
+        <p class="lead">模型你自己下载，粘进文件夹就行。点「已安装」就能看到。</p>
+
+        <div class="model-toolbar">
+          <div class="tabs" id="modelTabs">
+            <button class="tab is-active" data-tab="best">推荐</button>
+            <button class="tab" data-tab="search">搜索</button>
+            <button class="tab" data-tab="installed">已安装</button>
+          </div>
+
+          <div class="filters">
+            <div class="filter-group" id="typeFilter">
+              <span class="filter-label">类型</span>
+              <button data-type="all" class="is-active">全部</button>
+              <button data-type="llm">LLM</button>
+              <button data-type="vlm">VLM</button>
+              <button data-type="tts">TTS</button>
+              <button data-type="stt">STT</button>
+            </div>
+
+            <div class="search-only">
+              <input type="text" id="hfSearch" placeholder="Search HuggingFace models…" />
+              <select id="hfFormat">
+                <option value="all">All</option>
+                <option value="gguf">GGUF</option>
+                <option value="mlx">MLX</option>
+              </select>
+              <select id="hfSize">
+                <option value="all">All sizes</option>
+                <option value="1">≤1B</option>
+                <option value="3">≤3B</option>
+                <option value="7">≤7B</option>
+                <option value="13">≤13B</option>
+                <option value="32">≤32B</option>
+              </select>
+              <select id="hfSort">
+                <option value="downloads">Downloads</option>
+                <option value="likes">Likes</option>
+                <option value="trending">Trending</option>
+                <option value="newest">Newest</option>
+              </select>
+              <button class="btn primary" id="hfSearchBtn">Search</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel is-active" data-tab-panel="best">
+          <div class="models" id="bestMatchList"></div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="search">
+          <div class="models" id="searchList"></div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="installed">
+          <div class="models" id="installedList"></div>
+        </div>
+
+        <div class="active-model" id="activeModel" style="display:none;">
+          <div class="am-info">
+            <div class="am-title">运行中模型</div>
+            <div class="am-detail" id="activeModelDetail"></div>
+          </div>
+          <div class="am-actions">
+            <button class="btn" id="stopModelBtn">关闭</button>
+            <button class="btn primary" id="switchModelBtn">换模型</button>
+          </div>
+        </div>
+
+        <div class="active-model audio" id="audioService" style="display:none;">
+          <div class="am-info">
+            <div class="am-title">音频服务（TTS / STT）</div>
+            <div class="am-detail" id="audioServiceDetail"></div>
+          </div>
+          <div class="am-actions">
+            <button class="btn" id="stopAudioBtn">关闭</button>
+          </div>
+        </div>
+
+        <div class="endpoint" id="endpoint"></div>
+      </section>
+
+      <!-- Step 4: Documentation (install notes + system req + usage guide) -->
+      <section class="panel" data-panel="3">
+        <div class="doc" id="docBody"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">本地运行 · 数据不经过任何服务器</footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "coreui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lightweight provisioning core: detect system -> install engine -> install models. Apple-minimal local UI.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
