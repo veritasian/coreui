@@ -127,6 +127,7 @@ coreui/
 - 环境：Node ≥ 18（ESM）。
 - 语法检查：`node --check server.js lib/*.js public/app.js`。
 - 无任何第三方运行时依赖，无需 `npm install`。
+- 开发总结（架构 / 设计决策 / Bug 修复记录 / 经验教训）：见 [docs/development-summary.md](docs/development-summary.md)。
 
 ## Acknowledgements
 

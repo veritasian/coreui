@@ -118,6 +118,7 @@ coreui/
 - Environment: Node ≥ 18 (ESM).
 - Syntax check: `node --check server.js lib/*.js public/app.js`.
 - No third-party runtime dependencies — no `npm install`.
+- Development summary (architecture, design decisions, bug-fix log, lessons learned): see [docs/development-summary.md](docs/development-summary.md).
 
 ## Acknowledgements
 
