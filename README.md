@@ -11,6 +11,9 @@
 > 关键词：本地部署大模型 · 一站式 llama 引擎 · 一站式 SwiftLM 引擎 · 本地 LLM 管理 · Apple MLX · GGUF
 
 **零依赖、纯本地**：后端是一个 Node 原生 http 服务器，前端是单个 HTML 页面。所有模型与数据都留在你的电脑上。
+<img width="2127" height="1489" alt="Screenshot 2026-08-06 at 14-25-21" src="https://github.com/user-attachments/assets/88bff205-ebe6-43be-a240-13f0344e7b7d" />
+<img width="2143" height="1339" alt="Screenshot 2026-08-06 at 14-25-46" src="https://github.com/user-attachments/assets/0e0a1d0f-3b33-4958-b452-eedab3c16f0c" />
+![Uploading Screenshot 2026-08-06 at 14-26-07.jpg…]()
 
 ## 特性
 
